@@ -1,0 +1,341 @@
+<?xml version="1.0" ?>
+    <robot name="$(arg roboname)" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+        <xacro:include filename="$(find catvehicle)/urdf/catvehicle_front_centre_camera.gazebo"/>
+        <xacro:include filename="$(find catvehicle)/urdf/catvehicle_front_centre_left_camera.gazebo"/>
+        <xacro:include filename="$(find catvehicle)/urdf/catvehicle_front_centre_right_camera.gazebo"/>
+        <xacro:include filename="$(find catvehicle)/urdf/catvehicle_front_extreme_left_camera.gazebo"/>
+        <xacro:include filename="$(find catvehicle)/urdf/catvehicle_front_extreme_right_camera.gazebo"/>
+        
+        <xacro:include filename="$(find catvehicle)/urdf/catvehicle_rear_centre_left_camera.gazebo"/>
+        <xacro:include filename="$(find catvehicle)/urdf/catvehicle_rear_centre_right_camera.gazebo"/>
+        <xacro:include filename="$(find catvehicle)/urdf/catvehicle_rear_extreme_left_camera.gazebo"/>
+        <xacro:include filename="$(find catvehicle)/urdf/catvehicle_rear_extreme_right_camera.gazebo"/>
+
+        <xacro:include filename="$(find catvehicle)/urdf/catvehicle_left_side_centre_camera.gazebo"/>
+        <xacro:include filename="$(find catvehicle)/urdf/catvehicle_right_side_centre_camera.gazebo"/>
+
+
+        <joint name="camera_front_centre_joint" type="fixed">
+            <origin xyz="${4*camera_box} 0 ${car_height + 1.6*sensor_box}" rpy="0 0 0"/>
+            <axis xyz="0 0 1"/>
+            <parent link="base_link"/>
+            <child link="camera_front_centre_link"/>
+        </joint>
+
+        <link name="camera_front_centre_link">
+            <collision>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+            <box size="${camera_box} ${camera_box} ${camera_box}"/>
+            </geometry>
+            </collision>
+
+            <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <box size="${camera_box} ${camera_box} ${camera_box}"/>
+            </geometry>
+            </visual>
+
+            <inertial>
+            <mass value="1e-5" />
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
+            </inertial>
+        </link>
+
+        <joint name="camera_front_centre_left_joint" type="fixed">
+        <origin xyz="${4*camera_box} ${car_width/6} ${car_height + 1.6*sensor_box}" rpy="0 0 ${-PI/3}"/>
+            <axis xyz="0 0 1"/>
+            <parent link="base_link"/>
+            <child link="camera_front_centre_left_link"/>
+        </joint>
+
+        <link name="camera_front_centre_left_link">
+            <collision>
+              <origin xyz="0 0 0" rpy="0 0 0"/>
+              <geometry>
+              <box size="${camera_box} ${camera_box} ${camera_box}"/>
+              </geometry>
+            </collision>
+
+            <visual>
+              <origin xyz="0 0 0" rpy="0 0 0"/>
+              <geometry>
+                <box size="${camera_box} ${camera_box} ${camera_box}"/>
+              </geometry>
+            </visual>
+
+            <inertial>
+              <mass value="1e-5" />
+              <origin xyz="0 0 0" rpy="0 0 0"/>
+              <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
+            </inertial>
+        </link> 
+
+        <joint name="camera_front_centre_right_joint" type="fixed">
+        <origin xyz="${4*camera_box} ${-car_width/6} ${car_height + 1.5*sensor_box}" rpy="0 0 ${PI/3}"/>
+            <axis xyz="0 0 1"/>
+            <parent link="base_link"/>
+            <child link="camera_front_centre_right_link"/>
+        </joint>
+
+        <link name="camera_front_centre_right_link">
+            <collision>
+              <origin xyz="0 0 0" rpy="0 0 0"/>
+              <geometry>
+              <box size="${camera_box} ${camera_box} ${camera_box}"/>
+              </geometry>
+            </collision>
+
+            <visual>
+              <origin xyz="0 0 0" rpy="0 0 0"/>
+              <geometry>
+                <box size="${camera_box} ${camera_box} ${camera_box}"/>
+              </geometry>
+            </visual>
+
+            <inertial>
+              <mass value="1e-5" />
+              <origin xyz="0 0 0" rpy="0 0 0"/>
+              <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
+            </inertial>
+        </link>
+
+        
+        <joint name="camera_front_extreme_left_joint" type="fixed">
+        <origin xyz="${4*camera_box} ${-car_width/3} ${car_height + 1.5*sensor_box}" rpy="0 0 ${-PI/6}"/>
+            <axis xyz="0 0 1"/>
+            <parent link="base_link"/>
+            <child link="camera_front_extreme_left_link"/>
+        </joint>
+
+        <link name="camera_front_extreme_left_link">
+            <collision>
+              <origin xyz="0 0 0" rpy="0 0 0"/>
+              <geometry>
+              <box size="${camera_box} ${camera_box} ${camera_box}"/>
+              </geometry>
+            </collision>
+
+            <visual>
+              <origin xyz="0 0 0" rpy="0 0 0"/>
+              <geometry>
+                <box size="${camera_box} ${camera_box} ${camera_box}"/>
+              </geometry>
+            </visual>
+
+            <inertial>
+              <mass value="1e-5" />
+              <origin xyz="0 0 0" rpy="0 0 0"/>
+              <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
+            </inertial>
+        </link>
+
+        <joint name="camera_front_extreme_right_joint" type="fixed">
+        <origin xyz="${4*camera_box} ${car_width/3} ${car_height + 1.5*sensor_box}" rpy="0 0 ${PI/6}"/>
+            <axis xyz="0 0 1"/>
+            <parent link="base_link"/>
+            <child link="camera_front_extreme_right_link"/>
+        </joint>
+
+        <link name="camera_front_extreme_right_link">
+            <collision>
+              <origin xyz="0 0 0" rpy="0 0 0"/>
+              <geometry>
+              <box size="${camera_box} ${camera_box} ${camera_box}"/>
+              </geometry>
+            </collision>
+
+            <visual>
+              <origin xyz="0 0 0" rpy="0 0 0"/>
+              <geometry>
+                <box size="${camera_box} ${camera_box} ${camera_box}"/>
+              </geometry>
+            </visual>
+
+            <inertial>
+              <mass value="1e-5" />
+              <origin xyz="0 0 0" rpy="0 0 0"/>
+              <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
+            </inertial>
+        </link>
+
+        
+        <joint name="camera_rear_centre_left_joint" type="fixed">
+        <origin xyz="${-14*camera_box} ${car_width/7.5} ${car_height + 1.75*sensor_box}" rpy="0 0 ${PI}"/>
+            <axis xyz="0 0 1"/>
+            <parent link="base_link"/>
+            <child link="camera_rear_centre_left_link"/>
+        </joint>
+
+        <link name="camera_rear_centre_left_link">
+            <collision>
+              <origin xyz="0 0 0" rpy="0 0 0"/>
+              <geometry>
+              <box size="${camera_box} ${camera_box} ${camera_box}"/>
+              </geometry>
+            </collision>
+
+            <visual>
+              <origin xyz="0 0 0" rpy="0 0 0"/>
+              <geometry>
+                <box size="${camera_box} ${camera_box} ${camera_box}"/>
+              </geometry>
+            </visual>
+
+            <inertial>
+              <mass value="1e-5" />
+              <origin xyz="0 0 0" rpy="0 0 0"/>
+              <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
+            </inertial>
+        </link>
+
+        <joint name="camera_rear_centre_right_joint" type="fixed">
+        <origin xyz="${-14*camera_box} ${-car_width/7.5} ${car_height + 1.75*sensor_box}" rpy="0 0 ${PI}"/>
+            <axis xyz="0 0 1"/>
+            <parent link="base_link"/>
+            <child link="camera_rear_centre_right_link"/>
+        </joint>
+
+        <link name="camera_rear_centre_right_link">
+            <collision>
+              <origin xyz="0 0 0" rpy="0 0 0"/>
+              <geometry>
+              <box size="${camera_box} ${camera_box} ${camera_box}"/>
+              </geometry>
+            </collision>
+
+            <visual>
+              <origin xyz="0 0 0" rpy="0 0 0"/>
+              <geometry>
+                <box size="${camera_box} ${camera_box} ${camera_box}"/>
+              </geometry>
+            </visual>
+
+            <inertial>
+              <mass value="1e-5" />
+              <origin xyz="0 0 0" rpy="0 0 0"/>
+              <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
+            </inertial>
+        </link>
+
+        <joint name="camera_rear_extreme_left_joint" type="fixed">
+        <origin xyz="${-14*camera_box} ${car_width/2.5} ${car_height + 1.75*sensor_box}" rpy="0 0 ${-3*PI/4}"/>
+            <axis xyz="0 0 1"/>
+            <parent link="base_link"/>
+            <child link="camera_rear_extreme_left_link"/>
+        </joint>
+
+        <link name="camera_rear_extreme_left_link">
+            <collision>
+              <origin xyz="0 0 0" rpy="0 0 0"/>
+              <geometry>
+              <box size="${camera_box} ${camera_box} ${camera_box}"/>
+              </geometry>
+            </collision>
+
+            <visual>
+              <origin xyz="0 0 0" rpy="0 0 0"/>
+              <geometry>
+                <box size="${camera_box} ${camera_box} ${camera_box}"/>
+              </geometry>
+            </visual>
+
+            <inertial>
+              <mass value="1e-5" />
+              <origin xyz="0 0 0" rpy="0 0 0"/>
+              <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
+            </inertial>
+        </link>
+
+        <joint name="camera_rear_extreme_right_joint" type="fixed">
+        <origin xyz="${-14*camera_box} ${-car_width/2.5} ${car_height + 1.75*sensor_box}" rpy="0 0 ${3*PI/4}"/>
+            <axis xyz="0 0 1"/>
+            <parent link="base_link"/>
+            <child link="camera_rear_extreme_right_link"/>
+        </joint>
+
+        <link name="camera_rear_extreme_right_link">
+            <collision>
+              <origin xyz="0 0 0" rpy="0 0 0"/>
+              <geometry>
+              <box size="${camera_box} ${camera_box} ${camera_box}"/>
+              </geometry>
+            </collision>
+
+            <visual>
+              <origin xyz="0 0 0" rpy="0 0 0"/>
+              <geometry>
+                <box size="${camera_box} ${camera_box} ${camera_box}"/>
+              </geometry>
+            </visual>
+
+            <inertial>
+              <mass value="1e-5" />
+              <origin xyz="0 0 0" rpy="0 0 0"/>
+              <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
+            </inertial>
+        </link> 
+
+        <joint name="camera_left_side_centre_joint" type="fixed">
+            <origin xyz="${-5*camera_box} ${car_width/2} ${car_height + 1.6*sensor_box}" rpy="0 0 ${PI/2}"/>
+            <axis xyz="0 0 1"/>
+            <parent link="base_link"/>
+            <child link="camera_left_side_centre_link"/>
+        </joint>
+
+        <link name="camera_left_side_centre_link">
+            <collision>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+            <box size="${camera_box} ${camera_box} ${camera_box}"/>
+            </geometry>
+            </collision>
+
+            <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <box size="${camera_box} ${camera_box} ${camera_box}"/>
+            </geometry>
+            </visual>
+
+            <inertial>
+            <mass value="1e-5" />
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
+            </inertial>
+        </link>
+
+
+        <joint name="camera_right_side_centre_joint" type="fixed">
+            <origin xyz="${-5*camera_box} ${-car_width/2} ${car_height + 1.6*sensor_box}" rpy="0 0 ${-PI/2}"/>
+            <axis xyz="0 0 1"/>
+            <parent link="base_link"/>
+            <child link="camera_right_side_centre_link"/>
+        </joint>
+
+        <link name="camera_right_side_centre_link">
+            <collision>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+            <box size="${camera_box} ${camera_box} ${camera_box}"/>
+            </geometry>
+            </collision>
+
+            <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <box size="${camera_box} ${camera_box} ${camera_box}"/>
+            </geometry>
+            </visual>
+
+            <inertial>
+            <mass value="1e-5" />
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
+            </inertial>
+        </link>
+
+    </robot>

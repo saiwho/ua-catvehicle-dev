@@ -1,0 +1,201 @@
+<?xml version="1.0" ?>
+    <robot name="$(arg roboname)" xmlns:xacro="http://www.ros.org/wiki/xacro">        
+        <xacro:include filename="$(find catvehicle)/urdf/catvehicle_top_centre_lidar.gazebo"/>
+        <!-- <xacro:include filename="$(find catvehicle)/urdf/catvehicle_top_left_lidar.gazebo"/>
+        <xacro:include filename="$(find catvehicle)/urdf/catvehicle_top_right_lidar.gazebo"/>
+        <xacro:include filename="$(find catvehicle)/urdf/catvehicle_rear_centre_lidar.gazebo"/>
+        <xacro:include filename="$(find catvehicle)/urdf/catvehicle_rear_left_lidar.gazebo"/>
+        <xacro:include filename="$(find catvehicle)/urdf/catvehicle_rear_right_lidar.gazebo"/> -->
+
+        <!-- TOP CENTRE LIDAR -->
+        <joint name="top_centre_lidar_joint" type="fixed">
+            <origin xyz="0 0 ${car_height + 2*sensor_box + 0.01}" rpy="0 0 0"/>
+            <axis xyz="0 0 1"/>
+            <parent link="base_link"/>
+            <child link="top_centre_lidar_link"/>
+        </joint>
+
+        <link name="top_centre_lidar_link">
+                <collision>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                <box size="${sensor_box} ${sensor_box} ${sensor_box}"/>
+                </geometry>
+                </collision>
+
+                <visual>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                <box size="${sensor_box} ${sensor_box} ${sensor_box}"/>
+                </geometry>
+                </visual>
+
+            <inertial>
+                <mass value="${front_laser_mass}" />
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <inertia ixx="${(1/6)*front_laser_mass*front_laser_size*front_laser_size}" ixy="0" ixz="0"
+                iyy="${(1/6)*front_laser_mass*front_laser_size*front_laser_size}" iyz="0"
+                izz="${(1/6)*front_laser_mass*front_laser_size*front_laser_size}" />
+            </inertial>
+        </link>
+
+        <!-- TOP LEFT LIDAR -->
+        <!-- <joint name="top_left_lidar_joint" type="fixed">
+            <origin xyz="0 ${car_width/2} ${car_height + 2*sensor_box + 0.01}" rpy="0 0 ${PI/6}"/>
+            <axis xyz="0 0 1"/>
+            <parent link="base_link"/>
+            <child link="top_left_lidar_link"/>
+        </joint>
+
+        <link name="top_left_lidar_link">
+                <collision>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                <box size="${sensor_box} ${sensor_box} ${sensor_box}"/>
+                </geometry>
+                </collision>
+
+                <visual>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                <box size="${sensor_box} ${sensor_box} ${sensor_box}"/>
+                </geometry>
+                </visual>
+
+            <inertial>
+                <mass value="${front_laser_mass}" />
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <inertia ixx="${(1/6)*front_laser_mass*front_laser_size*front_laser_size}" ixy="0" ixz="0"
+                iyy="${(1/6)*front_laser_mass*front_laser_size*front_laser_size}" iyz="0"
+                izz="${(1/6)*front_laser_mass*front_laser_size*front_laser_size}" />
+            </inertial>
+        </link> -->
+
+        <!-- TOP RIGHT LIDAR -->
+        <!-- <joint name="top_right_lidar_joint" type="fixed">
+            <origin xyz="0 ${-car_width/2} ${car_height + 2*sensor_box + 0.01}" rpy="0 0 ${-PI/6}"/>
+            <axis xyz="0 0 1"/>
+            <parent link="base_link"/>
+            <child link="top_right_lidar_link"/>
+        </joint>
+
+        <link name="top_right_lidar_link">
+                <collision>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                <box size="${sensor_box} ${sensor_box} ${sensor_box}"/>
+                </geometry>
+                </collision>
+
+                <visual>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                <box size="${sensor_box} ${sensor_box} ${sensor_box}"/>
+                </geometry>
+                </visual>
+
+            <inertial>
+                <mass value="${front_laser_mass}"/>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <inertia ixx="${(1/6)*front_laser_mass*front_laser_size*front_laser_size}" ixy="0" ixz="0"
+                iyy="${(1/6)*front_laser_mass*front_laser_size*front_laser_size}" iyz="0"
+                izz="${(1/6)*front_laser_mass*front_laser_size*front_laser_size}" />
+            </inertial>
+        </link> -->
+
+        <!-- REAR CENTRE LIDAR -->
+        <!-- <joint name="rear_centre_lidar_joint" type="fixed">
+            <origin xyz="${-10*camera_box} 0 ${car_height + 2*sensor_box + 0.01}" rpy="0 0 ${PI}"/>
+            <axis xyz="0 0 1"/>
+            <parent link="base_link"/>
+            <child link="rear_centre_lidar_link"/>
+        </joint>
+
+        <link name="rear_centre_lidar_link">
+                <collision>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                <box size="${sensor_box} ${sensor_box} ${sensor_box}"/>
+                </geometry>
+                </collision>
+
+                <visual>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                <box size="${sensor_box} ${sensor_box} ${sensor_box}"/>
+                </geometry>
+                </visual>
+
+            <inertial>
+                <mass value="${front_laser_mass}" />
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <inertia ixx="${(1/6)*front_laser_mass*front_laser_size*front_laser_size}" ixy="0" ixz="0"
+                iyy="${(1/6)*front_laser_mass*front_laser_size*front_laser_size}" iyz="0"
+                izz="${(1/6)*front_laser_mass*front_laser_size*front_laser_size}" />
+            </inertial>
+        </link> -->
+
+        <!-- REAR LEFT LIDAR -->
+        <!-- <joint name="rear_left_lidar_joint" type="fixed">
+            <origin xyz="${-10*camera_box} ${car_width/2} ${car_height + 2*sensor_box + 0.01}" rpy="0 0 ${5*PI/6}"/>
+            <axis xyz="0 0 1"/>
+            <parent link="base_link"/>
+            <child link="rear_left_lidar_link"/>
+        </joint>
+
+        <link name="rear_left_lidar_link">
+            <collision>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                <box size="${sensor_box} ${sensor_box} ${sensor_box}"/>
+                </geometry>
+            </collision>
+
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                <box size="${sensor_box} ${sensor_box} ${sensor_box}"/>
+                </geometry>
+            </visual>
+
+            <inertial>
+                <mass value="${front_laser_mass}" />
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <inertia ixx="${(1/6)*front_laser_mass*front_laser_size*front_laser_size}" ixy="0" ixz="0"
+                iyy="${(1/6)*front_laser_mass*front_laser_size*front_laser_size}" iyz="0"
+                izz="${(1/6)*front_laser_mass*front_laser_size*front_laser_size}" />
+            </inertial>
+        </link> -->
+
+        <!-- REAR RIGHT LIDAR -->
+        <!-- <joint name="rear_right_lidar_joint" type="fixed">
+            <origin xyz="${-10*camera_box} ${-car_width/2} ${car_height + 2*sensor_box + 0.01}" rpy="0 0 ${-5*PI/6}"/>
+            <axis xyz="0 0 1"/>
+            <parent link="base_link"/>
+            <child link="rear_right_lidar_link"/>
+        </joint>
+
+        <link name="rear_right_lidar_link">
+            <collision>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                <box size="${sensor_box} ${sensor_box} ${sensor_box}"/>
+                </geometry>
+            </collision>
+
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                <box size="${sensor_box} ${sensor_box} ${sensor_box}"/>
+                </geometry>
+            </visual>
+
+            <inertial>
+                <mass value="${front_laser_mass}" />
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <inertia ixx="${(1/6)*front_laser_mass*front_laser_size*front_laser_size}" ixy="0" ixz="0"
+                iyy="${(1/6)*front_laser_mass*front_laser_size*front_laser_size}" iyz="0"
+                izz="${(1/6)*front_laser_mass*front_laser_size*front_laser_size}" />
+            </inertial>
+        </link> -->
+    </robot>
