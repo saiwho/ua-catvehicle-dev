@@ -8,9 +8,9 @@
    </gazebo>
 
    <gazebo reference="top_centre_lidar_link">
-         <sensor type="ray" name="lidar_sensor">
+         <sensor type="ray" name="top_centre_lidar_sensor">
                <pose>0 0 0 0 0 0</pose>
-               <visualize>true</visualize>
+               <visualize>false</visualize>
                <update_rate>30</update_rate>
                <ray>
                   <scan>
